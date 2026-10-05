@@ -1,3 +1,4 @@
+import { applyDiscount } from "./discount";
 import type { Priced } from "./pricing";
 import { applyTax } from "./tax";
 
@@ -17,6 +18,7 @@ export class Catalog {
   }
 
   total(ratePercent: number): number {
-    return applyTax(this.subtotal(), ratePercent);
+    const bulk = this.count() >= 3 ? 10 : 0;
+    return applyTax(applyDiscount(this.subtotal(), bulk), ratePercent);
   }
 }
