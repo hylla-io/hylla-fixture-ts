@@ -5,15 +5,14 @@ exactly.
 
 ## Money
 
-`roundHalfUp` rounds half up. `formatCents` prints cents as dollars. Both live in
-[src/money.ts](src/money.ts).
+`formatMoney` prints cents as dollars. It lives in [src/money.ts](src/money.ts).
 
 ## Tax
 
-`applyTax` in [src/tax.ts](src/tax.ts) adds tax and rounds half up. Refunds pass through:
-`applyTax(-1000, 10)` is `-1100`.
+`applyTax` in [src/tax.ts](src/tax.ts) adds tax and rounds with `roundHalfUp`, which lives beside
+it. Refunds clamp to zero: `applyTax(-1000, 10)` is `0`.
 
 ## Totals
 
-`Catalog.total` taxes the subtotal. `renderReport` prints a report; rounding is described under
-[Tax](#tax).
+`Catalog.total` takes a bulk discount with `applyDiscount` at three or more items, then taxes.
+`renderReport` prints a report; rounding is described under [Tax](#tax).
