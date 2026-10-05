@@ -1,5 +1,5 @@
 export function roundHalfUp(x: number): number {
-  return Math.floor(x + 0.5);
+  return Math.max(0, Math.floor(x + 0.5));
 }
 
 export function formatCents(cents: number): string {
